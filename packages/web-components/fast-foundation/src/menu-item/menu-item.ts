@@ -152,7 +152,10 @@ export class MenuItem extends FASTElement {
 
         e.preventDefault();
 
-        this.subMenuRegion.removeEventListener("change", this.handleAnchoredRegionChange);
+        this.subMenuRegion.removeEventListener(
+            "positionchange",
+            this.handleAnchoredRegionChange
+        );
 
         DOM.queueUpdate(() => {
             this.setAttribute("tabindex", "-1");
@@ -202,7 +205,10 @@ export class MenuItem extends FASTElement {
         if (!this.expanded) {
             return;
         }
-        this.subMenuRegion.addEventListener("change", this.handleAnchoredRegionChange);
+        this.subMenuRegion.addEventListener(
+            "positionchange",
+            this.handleAnchoredRegionChange
+        );
     };
 }
 
