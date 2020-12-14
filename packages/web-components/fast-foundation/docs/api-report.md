@@ -958,6 +958,8 @@ export class Popover extends FASTElement {
     //
     // @internal (undocumented)
     horizontalScaling: AxisScalingMode;
+    // @internal (undocumented)
+    isDelayTriggered: boolean;
     isTrapFocus: boolean;
     // @internal (undocumented)
     popover: HTMLDivElement;
