@@ -308,6 +308,9 @@ export function createTooltipTemplate(prefix: string): ViewTemplate;
 export function createPopoverTemplate(prefix: string): ViewTemplate;
 
 // @public
+export function createTooltipTemplate(prefix: string): ViewTemplate;
+
+// @public
 export class CSSCustomPropertyBehavior implements Behavior, CSSCustomPropertyDefinition {
     constructor(name: string, value: CSSCustomPropertyDefinition["value"], host: (source: HTMLElement) => Partial<CSSCustomPropertyTarget> | null);
     // @internal

@@ -1,12 +1,15 @@
 <fast-design-system-provider use-defaults>
-    <!-- TODO: ADD real world example with close button, submit button, autofocus, etc -->
     <style>
         .container {
             position: relative;
             height: 400px;
             width: 400px;
             background: lightgray;
-            overflow: scroll;
+            overflow: hidden;
+        }
+
+        .container.large {
+            width: 800px;
         }
 
         .sized-card {
@@ -22,6 +25,27 @@
 
         fast-popover::part(popover) {
             margin: 5px;
+        }
+
+        fast-text-field {
+            margin: 5px;
+        }
+
+        fast-text-field.real-world {
+            display: block;
+        }
+        fast-card.real-world {
+            width: 200px;
+        }
+
+        fast-text-field.large-perf {
+            display: inline-block;
+            width: 100px;
+        }
+        fast-card.large-perf {
+            width: 550px;
+            display: flex;
+            flex-wrap: wrap;
         }
     </style>
     <h1>Popover</h1>
@@ -45,7 +69,41 @@
         </fast-button>
     </div>
 
-    <h2>With Focusable Items</h2>
+    <!-- <h2>Always Visible</h2>
+    <div class="container">
+        <fast-popover visible target="target-always-vis" id="myPopoverVis">
+            <fast-card style="margin-bottom: 5px">
+                Popover Content
+            </fast-card>
+            <fast-button
+                appearance="stealth"
+                style="align-self: flex-end; justify-self: flex-start;"
+                onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverVis').visible = !(document.body.querySelector('#myPopoverVis').visible)"
+                tabindex="0"
+            >
+                X
+        </fast-button>
+            <fast-button
+                appearance="stealth"
+                style="align-self: flex-end; justify-self: flex-start;"
+                tabindex="0"
+                autofocus
+            >
+                Should Autofocus
+        </fast-button>
+
+        </fast-popover>
+
+        <fast-button
+            id="target-always-vis"
+            style="margin: 200px;"
+            onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverVis').visible = !(document.body.querySelector('#myPopoverVis').visible)"
+        >
+            target
+        </fast-button>
+    </div> -->
+
+    <h2>Focusable Items</h2>
     <div class="container">
         <fast-popover target="target-focusable" id="myPopoverOne">
             <fast-button
@@ -74,40 +132,55 @@
         </fast-button>
     </div>
 
-    <!-- <h2>Always Visible</h2>
+    <h2>Focusable Items and Autofocus Element</h2>
     <div class="container">
-        <fast-popover visible target="target-default" id="myPopoverOne">
-            <fast-card>
-                Popover Content
-            </fast-card>
+        <fast-popover
+            target="target-focusable-autofocus"
+            id="myPopoverTrapFocusAutofocus"
+        >
+            <fast-button
+                appearance="stealth"
+                style="align-self: flex-end; justify-self: flex-start;"
+                onclick="document.querySelector('#myPopoverTrapFocusAutofocus').visible = false;"
+                tabindex="0"
+            >
+                X
+            </fast-button>
+            <fast-button
+                appearance="stealth"
+                style="align-self: flex-end; justify-self: flex-start;"
+                tabindex="0"
+                autofocus
+            >
+                Should autofocus
+            </fast-button>
         </fast-popover>
 
         <fast-button
-            id="target-default"
+            id="target-focusable-autofocus"
             style="margin: 200px;"
-            onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverOne').visible = !(document.body.querySelector('#myPopoverOne').visible)"
+            onclick="(e) => e.stopPropagation(); document.body.querySelector('#myPopoverTrapFocusAutofocus').visible = !(document.body.querySelector('#myPopoverTrapFocusAutofocus').visible)"
         >
             target
         </fast-button>
-    </div> -->
+    </div>
 
-    <h2>With Timer, Buttons, and No Trap Focus</h2>
+    <h2>No Trap Focus and Autofocus Element</h2>
     <div class="container">
         <fast-popover target="target-sized" id="myPopoverTwo" trap-focus="false">
             <fast-button
                 appearance="stealth"
                 style="align-self: flex-end; justify-self: flex-start;"
-                onclick="document.querySelector('#myPopoverTwo').visible = false;"
                 tabindex="0"
-                autofocus
             >
-                Should autofocus
+                Test Button
             </fast-button>
             <fast-button
                 appearance="stealth"
                 style="align-self: flex-end; justify-self: flex-start;"
                 onclick="document.querySelector('#myPopoverTwo').visible = false;"
                 tabindex="0"
+                autofocus
             >
                 X
             </fast-button>
@@ -156,31 +229,35 @@
         </fast-button>
     </div>
 
-    <h2>Detail Default</h2>
-    <style>
-        fast-text-field {
-            display: block;
-            margin: 5px;
-        }
-        fast-card {
-            width: 200px;
-        }
-    </style>
+    <h2>Simple Form</h2>
     <div class="container">
         <fast-popover target="target-detailed" id="myPopoverDetailed">
-            <fast-card>
+            <fast-card class="real-world">
+                <fast-button
+                    style="float: right; margin: 5px;"
+                    appearance="stealth"
+                    style="align-self: flex-end; justify-self: flex-start;"
+                    onclick="document.querySelector('#myPopoverDetailed').visible = false;"
+                    tabindex="0"
+                >
+                    X
+                </fast-button>
+
                 <fast-text-field
+                    class="real-world"
                     tabindex="0"
                     appearance="outline"
                     placeholder="Name"
                 ></fast-text-field>
                 <fast-text-field
+                    class="real-world"
                     tabindex="0"
                     appearance="outline"
                     autofocus
                     placeholder="Should autofocus"
                 ></fast-text-field>
                 <fast-text-field
+                    class="real-world"
                     tabindex="0"
                     appearance="outline"
                     placeholder="Occupation"
@@ -192,6 +269,175 @@
             id="target-detailed"
             style="margin: 200px;"
             onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverDetailed').visible = !(document.body.querySelector('#myPopoverDetailed').visible)"
+        >
+            target
+        </fast-button>
+    </div>
+
+    <h2>Simple Image</h2>
+    <div class="container large" style="overflow: scroll;">
+        <fast-popover target="target-image" id="myPopoverImage" position="right">
+            <fast-card style="position: relative;">
+                <fast-button
+                    style="
+                        float: right;
+                        margin: 5px;
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                    "
+                    appearance="stealth"
+                    style="align-self: flex-end; justify-self: flex-start;"
+                    onclick="document.querySelector('#myPopoverImage').visible = false;"
+                    tabindex="0"
+                >
+                    X
+                </fast-button>
+                <img src="https://placehold.it/250" />
+            </fast-card>
+        </fast-popover>
+
+        <fast-button
+            id="target-image"
+            style="margin: 200px;"
+            onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverImage').visible = !(document.body.querySelector('#myPopoverImage').visible)"
+        >
+            target
+        </fast-button>
+    </div>
+
+    <h2>Detail Large Perf Test</h2>
+    <div class="container large">
+        <fast-popover target="target-perf" id="myPopoverPerf">
+            <fast-card class="large-perf">
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Name"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    autofocus
+                    placeholder="Should autofocus"
+                ></fast-text-field>
+                <fast-text-field
+                    class="large-perf"
+                    tabindex="0"
+                    appearance="outline"
+                    placeholder="Occupation"
+                ></fast-text-field>
+            </fast-card>
+        </fast-popover>
+
+        <fast-button
+            id="target-perf"
+            style="margin: 300px;"
+            onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverPerf').visible = !(document.body.querySelector('#myPopoverPerf').visible)"
         >
             target
         </fast-button>
