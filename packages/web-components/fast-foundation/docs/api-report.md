@@ -305,6 +305,9 @@ export function createDataGridTemplate(prefix: string): ViewTemplate;
 export function createTooltipTemplate(prefix: string): ViewTemplate;
 
 // @public
+export function createPopoverTemplate(prefix: string): ViewTemplate;
+
+// @public
 export class CSSCustomPropertyBehavior implements Behavior, CSSCustomPropertyDefinition {
     constructor(name: string, value: CSSCustomPropertyDefinition["value"], host: (source: HTMLElement) => Partial<CSSCustomPropertyTarget> | null);
     // @internal
@@ -960,7 +963,6 @@ export class Popover extends FASTElement {
     horizontalScaling: AxisScalingMode;
     // @internal (undocumented)
     isDelayTriggered: boolean;
-    isTrapFocus: boolean;
     // @internal (undocumented)
     popover: HTMLDivElement;
     // @internal (undocumented)
@@ -972,6 +974,7 @@ export class Popover extends FASTElement {
     region: AnchoredRegion;
     target: string;
     targetElement: HTMLElement | null;
+    trapFocus: boolean;
     // @internal (undocumented)
     verticalDefaultPosition: string | undefined;
     // @internal (undocumented)
@@ -1022,9 +1025,6 @@ export enum PopoverPosition {
     // (undocumented)
     topRightAligned = "top-right-aligned"
 }
-
-// @public
-export const PopoverTemplate: import("@microsoft/fast-element").ViewTemplate<Popover, any>;
 
 // @public
 export const ProgressRingTemplate: import("@microsoft/fast-element").ViewTemplate<BaseProgress, any>;
