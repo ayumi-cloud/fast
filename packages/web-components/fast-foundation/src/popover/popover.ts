@@ -6,11 +6,10 @@ import { ARIAGlobalStatesAndProperties } from "../patterns";
 import { applyMixins, getDirection } from "../utilities";
 import { PopoverPosition } from "./popover.options";
 
-// TODO: ADD focus trap
 // TODO: FIX styling
 // TODO: UPDATE position logic switch
 // TODO: ASK Do we want trapFocus to always be true???
-// TODO: Hook in to new loaded emitted event from anchoredRegion for trapFocus
+// TODO: Hook in to new loaded emitted event from anchoredRegion for trapFocus???
 // TODO: ASK Should we bring focus back to target after popover is closed
 
 export { PopoverPosition };
@@ -34,6 +33,7 @@ export class Popover extends FASTElement {
     public visible: boolean;
     private visibleChanged(): void {
         if ((this as FASTElement).$fastController.isConnected) {
+            // console.log("hit vis changed")
             if (!this.visible && this.isDelayTriggered) {
                 // prevents a double click of target from creating an erroneous state of visible = false, but the popover still shows on the page when delay is used. This occurs when the delay is longer than the double click period.
                 this.visible = true;
@@ -103,7 +103,7 @@ export class Popover extends FASTElement {
     @observable
     public targetElement: HTMLElement | null = null;
     private targetElementChanged(oldValue: HTMLElement | null): void {
-        console.log("targetElChanged: ", this.targetElement);
+        // console.log("targetElChanged: ", this.targetElement);
         if ((this as FASTElement).$fastController.isConnected) {
             if (
                 this.region !== null &&
@@ -273,7 +273,6 @@ export class Popover extends FASTElement {
             "inset-right",
             this.region.horizontalPosition === "insetRight"
         );
-        // TODO: ADD check for if focus is already withing popover,
         DOM.queueUpdate(this.trapFocusChanged);
     };
 
@@ -295,7 +294,10 @@ export class Popover extends FASTElement {
      * handle click on the body for soft-dismiss
      */
     private handleDocumentClick = (e: Event): void => {
-        console.log("doc click: ", document.activeElement, this.targetElement);
+        // console.log("doc click: ", document.activeElement, this.targetElement, this.popoverVisible,
+        // e.target !== this,
+        // !this.contains(e.target as Node),
+        // e.target !== this.targetElement);
         if (
             this.popoverVisible &&
             e.target !== this &&
@@ -305,7 +307,7 @@ export class Popover extends FASTElement {
             // this.hidePopover();
             this.visible = false;
             this.popoverVisible = false;
-            console.log("doc click if vis: ", document.activeElement, this.targetElement);
+            // console.log("doc click if vis: ", document.activeElement, this.targetElement);
         }
     };
 
@@ -362,7 +364,7 @@ export class Popover extends FASTElement {
      * handles key down events to check for dismiss and tab when trapFocus is true
      */
     private handleDocumentKeydown = (e: KeyboardEvent): void => {
-        console.log("keydown: ", document.activeElement);
+        // console.log("keydown: ", document.activeElement);
         if (!e.defaultPrevented && this.popoverVisible) {
             switch (e.keyCode) {
                 case keyCodeEscape:
@@ -394,12 +396,16 @@ export class Popover extends FASTElement {
      *
      */
     private handleDocumentFocus = (e: Event): void => {
-        console.log(
-            "in hand doc focus: ",
-            !e.defaultPrevented,
-            this.shouldForceFocus(e.target as HTMLElement)
-        );
-        if (!e.defaultPrevented && this.shouldForceFocus(e.target as HTMLElement)) {
+        if (
+            !e.defaultPrevented &&
+            this.shouldForceFocus(e.target as HTMLElement) &&
+            e.target !== this.targetElement
+        ) {
+            // console.log(
+            //     "in hand doc focus: ",
+            //     !e.defaultPrevented,
+            //     this.shouldForceFocus(e.target as HTMLElement)
+            // );
             this.focusFirstElement();
             e.preventDefault();
         }
@@ -446,6 +452,7 @@ export class Popover extends FASTElement {
     private showPopover = (): void => {
         document.addEventListener("keydown", this.handleDocumentKeydown);
         document.addEventListener("click", this.handleDocumentClick);
+        // console.log("Doc click added")
         this.popoverVisible = true;
         this.isDelayTriggered = false;
         DOM.queueUpdate(this.setRegionProps);
@@ -468,9 +475,11 @@ export class Popover extends FASTElement {
         }
         document.removeEventListener("keydown", this.handleDocumentKeydown);
         document.removeEventListener("click", this.handleDocumentClick);
+        // console.log("Doc click removed")
+
         document.removeEventListener("focusin", this.handleDocumentFocus);
         // TODO: ADD check for if click? this should not try to refocus when the dialog is closed unless the target was focused before.
-        console.log("in hide: ", this.targetElement);
+        // console.log("in hide: ", this.targetElement);
         this.refocusOnTarget();
         this.popoverVisible = false;
         this.clearDelayTimer();
@@ -497,9 +506,9 @@ export class Popover extends FASTElement {
      * trap focus in popover
      */
     private trapFocusChanged = (): void => {
+        this.tabbableElements = tabbable(this as Element);
+        // console.log("hit trap focus changed")
         if (this.trapFocus) {
-            this.tabbableElements = tabbable(this as Element);
-
             document.addEventListener("focusin", this.handleDocumentFocus);
 
             if (this.shouldForceFocus(document.activeElement)) {
@@ -508,12 +517,33 @@ export class Popover extends FASTElement {
                     return;
                 }
                 if (this.tabbableElements.length) {
-                    this.focusFirstElement();
+                    if (!this.checkAutofocus(this.tabbableElements)) {
+                        this.focusFirstElement();
+                    }
                 }
             }
         } else {
             document.removeEventListener("focusin", this.handleDocumentFocus);
+            if (this.tabbableElements.length) {
+                this.checkAutofocus(this.tabbableElements);
+            }
         }
+    };
+
+    /**
+     * check if elements contain an autofocus attribute
+     */
+
+    private checkAutofocus = (elements: HTMLElement[]) => {
+        let autofocusFlag: boolean = false;
+        elements.forEach((element: HTMLElement) => {
+            if (element.hasAttribute("autofocus")) {
+                element.focus();
+                autofocusFlag = true;
+                return;
+            }
+        });
+        return autofocusFlag;
     };
 
     /**
@@ -523,6 +553,7 @@ export class Popover extends FASTElement {
         if (this.tabbableElements.length === 0) {
             this.popover.focus();
         } else {
+            // console.log("in first focus else: ", this.tabbableElements[0])
             this.tabbableElements[0].focus();
         }
     };
@@ -531,7 +562,7 @@ export class Popover extends FASTElement {
      * Focus helper to take focus back to target once the popover is closed
      */
     private refocusOnTarget = () => {
-        console.log("in refocus: ", this.targetElement);
+        // console.log("in refocus: ", this.targetElement);
         this.targetElement?.focus();
     };
 
@@ -539,7 +570,7 @@ export class Popover extends FASTElement {
      * we should only focus if focus has not already been brought to the popover
      */
     private shouldForceFocus = (currentFocusElement: Element | null): boolean => {
-        console.log("shouldForceFocus: ", this.contains(currentFocusElement));
+        // console.log("shouldForceFocus: ", !this.hidden, !this.contains(currentFocusElement), currentFocusElement);
         return !this.hidden && !this.contains(currentFocusElement);
     };
 
