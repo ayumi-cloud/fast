@@ -6,50 +6,35 @@ on:
 
 
 jobs:
-  build_windows:
-    name: Validate on Windows
-    runs-on: windows-latest
-
+  build:
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+          os: [ubuntu-latest,windows-latest,macos-latest]
+          
+          node_version:['10','12','14']
+          
+          architecture: - x64
+          # an extra windows -x86 run time
+          include: 
+             - os: windows-2016
+             node-version: '10'
+             architecture: x86
+    name: Node ${{matrix.node-version}} - ${{matrix.architecture}}  on ${{matrix.os}}
     steps:
     - uses: actions/checkout@v2
 
     - name: Setup Node.js environment
-      uses: actions/setup-node@v2.1.0
+      uses: actions/setup-node@v2
       with:
-        node-version: '10'
-
+        node-version: ${{matrix.node-version}}
+        architecture: ${{matrix.architecture}}
+        
     - name: Install Lerna
       run: npm i -g lerna
 
     - name: Install package dependencies / prepare workspaces
-      run: |
-        yarn install --frozen-lockfile
-
-    - name: Ensure Prettier formatting
-      run: lerna run prettier:diff
-
-    - name: Execute unit tests
-      run: lerna run test --stream
-
-  
-  build_macos:
-    name: Validate on MacOS
-    
-    runs-on: macos-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v2.1.0
-      with:
-        node-version: '10'
-
-    - name: Install Lerna
-      run: sudo yarn global add lerna 
-
-    - name: Install package dependencies / prepare workspaces
-      run: yarn install --frozen-lockfile
+      run:  yarn install --frozen-lockfile
 
     - name: Ensure Prettier formatting
       run: lerna run prettier:diff
