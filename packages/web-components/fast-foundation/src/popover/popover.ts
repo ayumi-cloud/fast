@@ -7,11 +7,10 @@ import { applyMixins, getDirection } from "../utilities";
 import { PopoverPosition } from "./popover.options";
 
 // TODO: FIX styling
-// TODO: UPDATE position logic switch
+// TODO: UPDATE position logic switch to match position options
 // TODO: ASK Do we want trapFocus to always be true???
 // TODO: ASK Should we bring focus back to target after popover is closed
 
-// TODO: ADD configuration and definition files.
 // TODO: CHECK HC and Narrator
 
 export { PopoverPosition };
@@ -70,16 +69,6 @@ export class Popover extends FASTElement {
     }
 
     /**
-     * The delay in milliseconds before a popover is shown after a trigger event
-     *
-     * @defaultValue - 0
-     * @public
-     * HTML Attribute: delay
-     */
-    @attr
-    public delay: number;
-
-    /**
      * Controls the placement of the popover relative to the target.
      * When the position is undefined the popover is placed above or below the target based on available space.
      *
@@ -94,6 +83,16 @@ export class Popover extends FASTElement {
             this.updateLayout();
         }
     }
+
+    /**
+     * The delay in milliseconds before a popover is shown after a trigger event
+     *
+     * @defaultValue - 0
+     * @public
+     * HTML Attribute: delay
+     */
+    @attr
+    public delay: number;
 
     /**
      * the html element currently being used as target.

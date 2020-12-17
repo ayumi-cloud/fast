@@ -26,7 +26,7 @@ async function setup() {
 }
 
 describe("Popover", () => {
-    it("should not render the toolip by default", async () => {
+    it("should not render the popover by default", async () => {
         const { element, connect, disconnect } = await setup();
         const popover: FASTPopover = element.querySelector("fast-popover") as FASTPopover;
         popover.delay = 0;
@@ -40,7 +40,7 @@ describe("Popover", () => {
         await disconnect();
     });
 
-    it("should render the toolip when visible is true", async () => {
+    it("should render the popover when visible is true", async () => {
         const { element, connect, disconnect } = await setup();
         const popover: FASTPopover = element.querySelector("fast-popover") as FASTPopover;
 
@@ -58,7 +58,7 @@ describe("Popover", () => {
         await disconnect();
     });
 
-    it("should not render the toolip when visible is false", async () => {
+    it("should not render the popover when visible is false", async () => {
         const { element, connect, disconnect } = await setup();
         const popover: FASTPopover = element.querySelector("fast-popover") as FASTPopover;
 
