@@ -9,7 +9,6 @@ import { PopoverPosition } from "./popover.options";
 // TODO: FIX styling
 // TODO: UPDATE position logic switch
 // TODO: ASK Do we want trapFocus to always be true???
-// TODO: Hook in to new loaded emitted event from anchoredRegion for trapFocus???
 // TODO: ASK Should we bring focus back to target after popover is closed
 
 // TODO: ADD configuration and definition files.
@@ -252,7 +251,6 @@ export class Popover extends FASTElement {
 
     /**
      * invoked when the anchored region's position relative to the anchor changes
-     *
      * @internal
      */
     public handlePositionChange = (e: Event): void => {
@@ -274,30 +272,20 @@ export class Popover extends FASTElement {
             "inset-right",
             this.region.horizontalPosition === "insetRight"
         );
-        DOM.queueUpdate(this.trapFocusChanged);
     };
 
     /**
-     * click on the target
+     * invoked when the anchored region is loaded, safe to run any events/methods on anchored region in this method
+     * @internal
      */
-    // private handleTargetClick = (e: Event): void => {
-    //     if(this.visible && !this.popoverVisible){
-    //         this.popoverVisible = false;
-    //     }
-    //     if (this.popoverVisible) {
-    //         this.hidePopover();
-    //     } else {
-    //         this.showPopoverTimer();
-    //     }
-    // };
+    public handleAnchoredRegionLoaded = (e: Event) => {
+        this.trapFocusChanged();
+    };
 
     /**
      * handle click on the body for soft-dismiss
      */
     private handleDocumentClick = (e: Event): void => {
-        // e.target !== this,
-        // !this.contains(e.target as Node),
-        // e.target !== this.targetElement);
         if (
             this.popoverVisible &&
             e.target !== this &&
@@ -399,10 +387,6 @@ export class Popover extends FASTElement {
             this.shouldForceFocus(e.target as HTMLElement) &&
             e.target !== this.targetElement
         ) {
-            //     "in hand doc focus: ",
-            //     !e.defaultPrevented,
-            //     this.shouldForceFocus(e.target as HTMLElement)
-            // );
             this.focusFirstElement();
             e.preventDefault();
         }
@@ -473,7 +457,6 @@ export class Popover extends FASTElement {
         document.removeEventListener("click", this.handleDocumentClick);
 
         document.removeEventListener("focusin", this.handleDocumentFocus);
-        // TODO: ADD check for if click? this should not try to refocus when the dialog is closed unless the target was focused before.
         this.refocusOnTarget();
         this.popoverVisible = false;
         this.clearDelayTimer();
@@ -494,6 +477,7 @@ export class Popover extends FASTElement {
             "positionchange",
             this.handlePositionChange
         );
+        (this.region as any).addEventListener("loaded", this.handleAnchoredRegionLoaded);
     };
 
     /**
