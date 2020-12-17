@@ -52,7 +52,7 @@
 
     <h2>Default</h2>
     <div class="container">
-        <fast-popover target="target-default" id="myPopover">
+        <fast-popover aria-label="simple popover" target="target-default" id="myPopover">
             <fast-card>
                 Popover Content
             </fast-card>
@@ -71,7 +71,7 @@
 
     <!-- <h2>Always Visible</h2>
     <div class="container">
-        <fast-popover visible target="target-always-vis" id="myPopoverVis">
+        <fast-popover aria-label="simple popover" visible target="target-always-vis" id="myPopoverVis">
             <fast-card style="margin-bottom: 5px">
                 Popover Content
             </fast-card>
@@ -81,7 +81,18 @@
                 onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverVis').visible = !(document.body.querySelector('#myPopoverVis').visible)"
                 tabindex="0"
             >
-                X
+                <svg
+                    class="close-button-svg"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                        fill="currentcolor"
+                        fill-opacity="0.83"
+                    />
+                </svg>
         </fast-button>
             <fast-button
                 appearance="stealth"
@@ -105,14 +116,30 @@
 
     <h2>Focusable Items</h2>
     <div class="container">
-        <fast-popover target="target-focusable" id="myPopoverOne">
+        <fast-popover
+            aria-label="simple popover"
+            target="target-focusable"
+            id="myPopoverOne"
+        >
             <fast-button
                 appearance="stealth"
                 style="align-self: flex-end; justify-self: flex-start;"
                 onclick="document.querySelector('#myPopoverOne').visible = false;"
                 tabindex="0"
+                title="close"
             >
-                X
+                <svg
+                    class="close-button-svg"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                        fill="currentcolor"
+                        fill-opacity="0.83"
+                    />
+                </svg>
             </fast-button>
             <fast-button
                 appearance="stealth"
@@ -143,8 +170,20 @@
                 style="align-self: flex-end; justify-self: flex-start;"
                 onclick="document.querySelector('#myPopoverTrapFocusAutofocus').visible = false;"
                 tabindex="0"
+                title="close"
             >
-                X
+                <svg
+                    class="close-button-svg"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                        fill="currentcolor"
+                        fill-opacity="0.83"
+                    />
+                </svg>
             </fast-button>
             <fast-button
                 appearance="stealth"
@@ -167,7 +206,12 @@
 
     <h2>No Trap Focus and Autofocus Element</h2>
     <div class="container">
-        <fast-popover target="target-sized" id="myPopoverTwo" trap-focus="false">
+        <fast-popover
+            aria-label="simple popover"
+            target="target-sized"
+            id="myPopoverTwo"
+            trap-focus="false"
+        >
             <fast-button
                 appearance="stealth"
                 style="align-self: flex-end; justify-self: flex-start;"
@@ -181,8 +225,20 @@
                 onclick="document.querySelector('#myPopoverTwo').visible = false;"
                 tabindex="0"
                 autofocus
+                title="close"
             >
-                X
+                <svg
+                    class="close-button-svg"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                        fill="currentcolor"
+                        fill-opacity="0.83"
+                    />
+                </svg>
             </fast-button>
         </fast-popover>
 
@@ -197,22 +253,51 @@
 
     <h2>Long Delay</h2>
     <div class="container">
-        <fast-popover target="long-delay-target" id="myPopoverThree" delay="500">
+        <fast-popover
+            aria-label="simple popover"
+            target="long-delay-target"
+            id="myPopoverThree"
+            delay="500"
+        >
             <fast-button
                 appearance="stealth"
                 style="align-self: flex-end; justify-self: flex-start;"
                 onclick="document.querySelector('#myPopoverThree').visible = false;"
                 tabindex="0"
+                title="close"
             >
-                X
+                <svg
+                    class="close-button-svg"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                        fill="currentcolor"
+                        fill-opacity="0.83"
+                    />
+                </svg>
             </fast-button>
             <fast-button
                 appearance="stealth"
                 style="align-self: flex-end; justify-self: flex-start;"
                 onclick="document.querySelector('#myPopoverThree').visible = false;"
                 tabindex="0"
+                title="close"
             >
-                X
+                <svg
+                    class="close-button-svg"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                        fill="currentcolor"
+                        fill-opacity="0.83"
+                    />
+                </svg>
             </fast-button>
             <p style="width: 200px; white-space: normal;">
                 500ms. Double clicking the "target" button should only show one popover
@@ -231,7 +316,11 @@
 
     <h2>Simple Form</h2>
     <div class="container">
-        <fast-popover target="target-detailed" id="myPopoverDetailed">
+        <fast-popover
+            aria-label="simple popover"
+            target="target-detailed"
+            id="myPopoverDetailed"
+        >
             <fast-card class="real-world">
                 <fast-button
                     style="float: right; margin: 5px;"
@@ -240,7 +329,18 @@
                     onclick="document.querySelector('#myPopoverDetailed').visible = false;"
                     tabindex="0"
                 >
-                    X
+                    <svg
+                        class="close-button-svg"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                            fill="currentcolor"
+                            fill-opacity="0.83"
+                        />
+                    </svg>
                 </fast-button>
 
                 <fast-text-field
@@ -276,7 +376,12 @@
 
     <h2>Simple Image</h2>
     <div class="container large" style="overflow: scroll;">
-        <fast-popover target="target-image" id="myPopoverImage" position="right">
+        <fast-popover
+            aria-label="simple popover"
+            target="target-image"
+            id="myPopoverImage"
+            position="right"
+        >
             <fast-card style="position: relative;">
                 <fast-button
                     style="
@@ -291,7 +396,18 @@
                     onclick="document.querySelector('#myPopoverImage').visible = false;"
                     tabindex="0"
                 >
-                    X
+                    <svg
+                        class="close-button-svg"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                            fill="currentcolor"
+                            fill-opacity="0.83"
+                        />
+                    </svg>
                 </fast-button>
                 <img src="https://placehold.it/250" />
             </fast-card>
@@ -308,7 +424,7 @@
 
     <h2>Detail Large Perf Test</h2>
     <div class="container large">
-        <fast-popover target="target-perf" id="myPopoverPerf">
+        <fast-popover aria-label="simple popover" target="target-perf" id="myPopoverPerf">
             <fast-card class="large-perf">
                 <fast-text-field
                     class="large-perf"
@@ -445,7 +561,7 @@
 
     <!-- <h2>Top</h2>
     <div class="container">
-        <fast-popover position="top" target="target-top">
+        <fast-popover aria-label="simple popover" position="top" target="target-top">
             Popover Content
         </fast-popover>
 
@@ -456,7 +572,7 @@
 
     <h2>Right</h2>
     <div class="container">
-        <fast-popover target="target-right" position="right">
+        <fast-popover aria-label="simple popover" target="target-right" position="right">
             Popover Content
         </fast-popover>
 
@@ -467,7 +583,7 @@
 
     <!-- <h2>Bottom</h2>
     <div class="container">
-        <fast-popover target="target-bottom" position="bottom">
+        <fast-popover aria-label="simple popover" target="target-bottom" position="bottom">
             Popover Content
         </fast-popover>
 
@@ -478,7 +594,7 @@
 
     <h2>Left</h2>
     <div class="container">
-        <fast-popover target="target-left" position="left">
+        <fast-popover aria-label="simple popover" target="target-left" position="left">
             Popover Content
         </fast-popover>
 
@@ -489,7 +605,7 @@
 
     <h2>Switch targets</h2>
     <div class="container">
-        <fast-popover id="popover-target-switch">
+        <fast-popover aria-label="simple popover" id="popover-target-switch">
             Popover Content
         </fast-popover>
 
@@ -535,11 +651,11 @@
             target
         </fast-button>
 
-        <fast-popover target="target-rtl" position="left">
+        <fast-popover aria-label="simple popover" target="target-rtl" position="left">
             Left
         </fast-popover>
 
-        <fast-popover target="target-rtl" position="right">
+        <fast-popover aria-label="simple popover" target="target-rtl" position="right">
             Right
         </fast-popover>
     </div>
@@ -550,11 +666,11 @@
             target
         </fast-button>
 
-        <fast-popover target="target-se" position="start">
+        <fast-popover aria-label="simple popover" target="target-se" position="start">
             Start
         </fast-popover>
 
-        <fast-popover target="target-se" position="end">
+        <fast-popover aria-label="simple popover" target="target-se" position="end">
             End
         </fast-popover>
     </div>
@@ -568,11 +684,11 @@
             target
         </fast-button>
 
-        <fast-popover target="target-sertl" position="start">
+        <fast-popover aria-label="simple popover" target="target-sertl" position="start">
             Start
         </fast-popover>
 
-        <fast-popover target="target-sertl" position="end">
+        <fast-popover aria-label="simple popover" target="target-sertl" position="end">
             End
         </fast-popover>
     </div> -->

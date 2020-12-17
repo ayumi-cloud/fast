@@ -29,6 +29,9 @@ export function createPopoverTemplate(prefix: string): ViewTemplate {
                     role="dialog"
                     ${ref("popover")}
                     tabindex="0"
+                    aria-label="${x => x.ariaLabel}"
+                    aria-labelledby="${x => x.ariaLabelledby}"
+                    aria-describedby="${x => x.ariaDescribedby}"
                 >
                     <slot></slot>
                 </div>
