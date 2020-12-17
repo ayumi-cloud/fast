@@ -302,9 +302,6 @@ export function createDataGridRowTemplate(prefix: string): ViewTemplate;
 export function createDataGridTemplate(prefix: string): ViewTemplate;
 
 // @public
-export function createTooltipTemplate(prefix: string): ViewTemplate;
-
-// @public
 export function createPopoverTemplate(prefix: string): ViewTemplate;
 
 // @public
@@ -953,6 +950,8 @@ export class Popover extends FASTElement {
     // (undocumented)
     disconnectedCallback(): void;
     // @internal
+    handleAnchoredRegionLoaded: (e: Event) => void;
+    // @internal
     handlePositionChange: (e: Event) => void;
     // @internal (undocumented)
     horizontalDefaultPosition: string | undefined;
@@ -960,8 +959,6 @@ export class Popover extends FASTElement {
     horizontalInset: string;
     // @internal (undocumented)
     horizontalPositioningMode: AxisPositioningMode;
-    // Warning: (ae-forgotten-export) The symbol "AxisScalingMode" needs to be exported by the entry point index.d.ts
-    //
     // @internal (undocumented)
     horizontalScaling: AxisScalingMode;
     // @internal (undocumented)
@@ -971,8 +968,6 @@ export class Popover extends FASTElement {
     // @internal (undocumented)
     popoverVisible: boolean;
     position: PopoverPosition;
-    // Warning: (ae-forgotten-export) The symbol "AnchoredRegion" needs to be exported by the entry point index.d.ts
-    //
     // @internal (undocumented)
     region: AnchoredRegion;
     target: string;
@@ -982,8 +977,6 @@ export class Popover extends FASTElement {
     verticalDefaultPosition: string | undefined;
     // @internal (undocumented)
     verticalInset: string;
-    // Warning: (ae-forgotten-export) The symbol "AxisPositioningMode" needs to be exported by the entry point index.d.ts
-    //
     // @internal (undocumented)
     verticalPositioningMode: AxisPositioningMode;
     // @internal (undocumented)
