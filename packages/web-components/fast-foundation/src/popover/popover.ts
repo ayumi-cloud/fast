@@ -12,6 +12,9 @@ import { PopoverPosition } from "./popover.options";
 // TODO: Hook in to new loaded emitted event from anchoredRegion for trapFocus???
 // TODO: ASK Should we bring focus back to target after popover is closed
 
+// TODO: ADD configuration and definition files.
+// TODO: CHECK HC and Narrator
+
 export { PopoverPosition };
 
 /**
