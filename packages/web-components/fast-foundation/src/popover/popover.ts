@@ -11,8 +11,6 @@ import { PopoverPosition } from "./popover.options";
 // TODO: ASK Do we want trapFocus to always be true???
 // TODO: ASK Should we bring focus back to target after popover is closed
 
-// TODO: CHECK HC and Narrator
-
 export { PopoverPosition };
 
 /**
@@ -311,6 +309,54 @@ export class Popover extends FASTElement {
                 this.horizontalInset = "true";
                 this.verticalInset = "false";
                 this.horizontalScaling = "anchor";
+                this.verticalScaling = "content";
+                break;
+            case PopoverPosition.topLeft:
+            case PopoverPosition.topRightAligned:
+                this.verticalPositioningMode = "locktodefault";
+                this.horizontalPositioningMode = "locktodefault";
+                this.verticalDefaultPosition = "top";
+                this.horizontalDefaultPosition = "left";
+                this.horizontalInset =
+                    this.position === PopoverPosition.topLeft ? "false" : "true";
+                this.verticalInset = "false";
+                this.horizontalScaling = "content";
+                this.verticalScaling = "content";
+                break;
+            case PopoverPosition.topRight:
+            case PopoverPosition.topLeftAligned:
+                this.verticalPositioningMode = "locktodefault";
+                this.horizontalPositioningMode = "locktodefault";
+                this.verticalDefaultPosition = "top";
+                this.horizontalDefaultPosition = "right";
+                this.horizontalInset =
+                    this.position === PopoverPosition.topRight ? "false" : "true";
+                this.verticalInset = "false";
+                this.horizontalScaling = "content";
+                this.verticalScaling = "content";
+                break;
+            case PopoverPosition.bottomLeft:
+            case PopoverPosition.bottomRightAligned:
+                this.verticalPositioningMode = "locktodefault";
+                this.horizontalPositioningMode = "locktodefault";
+                this.verticalDefaultPosition = "bottom";
+                this.horizontalDefaultPosition = "left";
+                this.horizontalInset =
+                    this.position === PopoverPosition.bottomLeft ? "false" : "true";
+                this.verticalInset = "false";
+                this.horizontalScaling = "content";
+                this.verticalScaling = "content";
+                break;
+            case PopoverPosition.bottomRight:
+            case PopoverPosition.bottomLeftAligned:
+                this.verticalPositioningMode = "locktodefault";
+                this.horizontalPositioningMode = "locktodefault";
+                this.verticalDefaultPosition = "bottom";
+                this.horizontalDefaultPosition = "right";
+                this.horizontalInset =
+                    this.position === PopoverPosition.bottomRight ? "false" : "true";
+                this.verticalInset = "false";
+                this.horizontalScaling = "content";
                 this.verticalScaling = "content";
                 break;
 

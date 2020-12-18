@@ -28,7 +28,7 @@
         }
 
         fast-popover::part(popover) {
-            margin: 5px;
+            margin: 2px;
         }
 
         fast-text-field {
@@ -82,10 +82,15 @@
         </fast-button>
     </div>
 
-    <!-- <h2>Always Visible</h2>
+    <h2>Always Visible</h2>
     <div class="container">
-        <fast-popover aria-label="simple popover" visible target="target-always-vis" id="myPopoverVis">
-            <fast-card style="margin-bottom: 5px">
+        <fast-popover
+            aria-label="simple popover"
+            visible
+            target="target-always-vis"
+            id="myPopoverVis"
+        >
+            <fast-card style="margin-bottom: 5px;">
                 Popover Content
             </fast-card>
             <fast-button
@@ -106,7 +111,7 @@
                         fill-opacity="0.83"
                     />
                 </svg>
-        </fast-button>
+            </fast-button>
             <fast-button
                 appearance="stealth"
                 style="align-self: flex-end; justify-self: flex-start;"
@@ -114,8 +119,7 @@
                 autofocus
             >
                 Should Autofocus
-        </fast-button>
-
+            </fast-button>
         </fast-popover>
 
         <fast-button
@@ -125,7 +129,7 @@
         >
             target
         </fast-button>
-    </div> -->
+    </div>
 
     <h2>Focusable Items</h2>
     <div class="container">
@@ -572,7 +576,8 @@
         </fast-button>
     </div>
 
-    <h2>Top</h2>
+    <h2>Basic Locations</h2>
+    <h3>Top</h3>
     <div class="container">
         <fast-popover
             class="position-controlled"
@@ -613,7 +618,7 @@
             target
         </fast-button>
     </div>
-    <h2>Bottom</h2>
+    <h3>Bottom</h3>
     <div class="container">
         <fast-popover
             class="position-controlled"
@@ -654,7 +659,8 @@
             target
         </fast-button>
     </div>
-    <h2>Left</h2>
+
+    <h3>Left</h3>
     <div class="container large">
         <fast-popover
             class="position-controlled"
@@ -693,7 +699,7 @@
             target
         </fast-button>
     </div>
-    <h2>Right</h2>
+    <h3>Right</h3>
     <div class="container large">
         <fast-popover
             aria-label="simple popover"
@@ -727,6 +733,340 @@
             id="target-right"
             style="margin: 200px 350px;"
             onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverRight').visible = !(document.body.querySelector('#myPopoverRight').visible)"
+            tabindex="0"
+        >
+            target
+        </fast-button>
+    </div>
+
+    <h2>Corner Positions</h2>
+    <h3>Top Left Corner</h3>
+    <div class="container">
+        <fast-popover
+            class="position-controlled"
+            aria-label="simple popover"
+            position="top-left-corner"
+            target="target-top-left"
+            id="myPopoverTopLeft"
+        >
+            <fast-card>
+                <fast-button
+                    appearance="stealth"
+                    onclick="document.querySelector('#myPopoverTopLeft').visible = false;"
+                    tabindex="0"
+                >
+                    <svg
+                        class="close-button-svg"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                            fill="currentcolor"
+                            fill-opacity="0.83"
+                        />
+                    </svg>
+                </fast-button>
+                <p class="wrap-text">Should position ABOVE the target anchor</p>
+            </fast-card>
+        </fast-popover>
+
+        <fast-button
+            id="target-top-left"
+            style="margin: 200px 100px 200px 300px;"
+            onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverTopLeft').visible = !(document.body.querySelector('#myPopoverTopLeft').visible)"
+            tabindex="0"
+        >
+            target
+        </fast-button>
+    </div>
+    <h3>Top Right Corner</h3>
+    <div class="container">
+        <fast-popover
+            class="position-controlled"
+            aria-label="simple popover"
+            position="top-right-corner"
+            target="target-top-right"
+            id="myPopoverTopRight"
+        >
+            <fast-card>
+                <fast-button
+                    appearance="stealth"
+                    onclick="document.querySelector('#myPopoverTopRight').visible = false;"
+                    tabindex="0"
+                >
+                    <svg
+                        class="close-button-svg"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                            fill="currentcolor"
+                            fill-opacity="0.83"
+                        />
+                    </svg>
+                </fast-button>
+                <p class="wrap-text">Should position ABOVE the target anchor</p>
+            </fast-card>
+        </fast-popover>
+
+        <fast-button
+            id="target-top-right"
+            style="margin: 200px 300px 200px 50px;"
+            onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverTopRight').visible = !(document.body.querySelector('#myPopoverTopRight').visible)"
+            tabindex="0"
+        >
+            target
+        </fast-button>
+    </div>
+    <h3>Bottom Left Corner</h3>
+    <div class="container">
+        <fast-popover
+            class="position-controlled"
+            aria-label="simple popover"
+            position="bottom-left-corner"
+            target="target-bottom-left"
+            id="myPopoverBottomLeft"
+        >
+            <fast-card>
+                <fast-button
+                    appearance="stealth"
+                    onclick="document.querySelector('#myPopoverBottomLeft').visible = false;"
+                    tabindex="0"
+                >
+                    <svg
+                        class="close-button-svg"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                            fill="currentcolor"
+                            fill-opacity="0.83"
+                        />
+                    </svg>
+                </fast-button>
+                <p class="wrap-text">Should position ABOVE the target anchor</p>
+            </fast-card>
+        </fast-popover>
+
+        <fast-button
+            id="target-bottom-left"
+            style="margin: 200px 100px 200px 300px;"
+            onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverBottomLeft').visible = !(document.body.querySelector('#myPopoverBottomLeft').visible)"
+            tabindex="0"
+        >
+            target
+        </fast-button>
+    </div>
+    <h3>Bottom Right Corner</h3>
+    <div class="container">
+        <fast-popover
+            class="position-controlled"
+            aria-label="simple popover"
+            position="bottom-right-corner"
+            target="target-bottom-right"
+            id="myPopoverBottomRight"
+        >
+            <fast-card>
+                <fast-button
+                    appearance="stealth"
+                    onclick="document.querySelector('#myPopoverBottomRight').visible = false;"
+                    tabindex="0"
+                >
+                    <svg
+                        class="close-button-svg"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                            fill="currentcolor"
+                            fill-opacity="0.83"
+                        />
+                    </svg>
+                </fast-button>
+                <p class="wrap-text">Should position ABOVE the target anchor</p>
+            </fast-card>
+        </fast-popover>
+
+        <fast-button
+            id="target-bottom-right"
+            style="margin: 200px 300px 200px 50px;"
+            onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverBottomRight').visible = !(document.body.querySelector('#myPopoverBottomRight').visible)"
+            tabindex="0"
+        >
+            target
+        </fast-button>
+    </div>
+    <h2>Aligned</h2>
+    <h3>Top, Left Aligned</h3>
+    <div class="container">
+        <fast-popover
+            class="position-controlled"
+            aria-label="simple popover"
+            position="top-left-aligned"
+            target="target-top-left-aligned"
+            id="myPopoverTopLeftAligned"
+        >
+            <fast-card>
+                <fast-button
+                    appearance="stealth"
+                    onclick="document.querySelector('#myPopoverTopLeftAligned').visible = false;"
+                    tabindex="0"
+                >
+                    <svg
+                        class="close-button-svg"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                            fill="currentcolor"
+                            fill-opacity="0.83"
+                        />
+                    </svg>
+                </fast-button>
+                <p class="wrap-text">Should position ABOVE the target anchor</p>
+            </fast-card>
+        </fast-popover>
+
+        <fast-button
+            id="target-top-left-aligned"
+            style="margin: 200px 300px 200px 50px;"
+            onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverTopLeftAligned').visible = !(document.body.querySelector('#myPopoverTopLeftAligned').visible)"
+            tabindex="0"
+        >
+            target
+        </fast-button>
+    </div>
+    <h3>Top, Right Aligned</h3>
+    <div class="container">
+        <fast-popover
+            class="position-controlled"
+            aria-label="simple popover"
+            position="top-right-aligned"
+            target="target-top-right-aligned"
+            id="myPopoverTopRightAligned"
+        >
+            <fast-card>
+                <fast-button
+                    appearance="stealth"
+                    onclick="document.querySelector('#myPopoverTopRightAligned').visible = false;"
+                    tabindex="0"
+                >
+                    <svg
+                        class="close-button-svg"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                            fill="currentcolor"
+                            fill-opacity="0.83"
+                        />
+                    </svg>
+                </fast-button>
+                <p class="wrap-text">Should position ABOVE the target anchor</p>
+            </fast-card>
+        </fast-popover>
+
+        <fast-button
+            id="target-top-right-aligned"
+            style="margin: 200px 50px 200px 300px;"
+            onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverTopRightAligned').visible = !(document.body.querySelector('#myPopoverTopRightAligned').visible)"
+            tabindex="0"
+        >
+            target
+        </fast-button>
+    </div>
+    <h3>Bottom, Left Aligned</h3>
+    <div class="container">
+        <fast-popover
+            class="position-controlled"
+            aria-label="simple popover"
+            position="bottom-left-aligned"
+            target="target-bottom-left-aligned"
+            id="myPopoverBottomLeftAligned"
+        >
+            <fast-card>
+                <fast-button
+                    appearance="stealth"
+                    onclick="document.querySelector('#myPopoverBottomLeftAligned').visible = false;"
+                    tabindex="0"
+                >
+                    <svg
+                        class="close-button-svg"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                            fill="currentcolor"
+                            fill-opacity="0.83"
+                        />
+                    </svg>
+                </fast-button>
+                <p class="wrap-text">Should position ABOVE the target anchor</p>
+            </fast-card>
+        </fast-popover>
+
+        <fast-button
+            id="target-bottom-left-aligned"
+            style="margin: 200px 300px 200px 50px;"
+            onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverBottomLeftAligned').visible = !(document.body.querySelector('#myPopoverBottomLeftAligned').visible)"
+            tabindex="0"
+        >
+            target
+        </fast-button>
+    </div>
+
+    <h3>Bottom, Right Aligned</h3>
+    <div class="container">
+        <fast-popover
+            class="position-controlled"
+            aria-label="simple popover"
+            position="bottom-right-aligned"
+            target="target-bottom-right-aligned"
+            id="myPopoverBottomRightAligned"
+        >
+            <fast-card>
+                <fast-button
+                    appearance="stealth"
+                    onclick="document.querySelector('#myPopoverBottomRightAligned').visible = false;"
+                    tabindex="0"
+                >
+                    <svg
+                        class="close-button-svg"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M6.5332 6L10.5762 10.0488L10.0488 10.5762L6 6.5332L1.95117 10.5762L1.42383 10.0488L5.4668 6L1.42383 1.95117L1.95117 1.42383L6 5.4668L10.0488 1.42383L10.5762 1.95117L6.5332 6Z"
+                            fill="currentcolor"
+                            fill-opacity="0.83"
+                        />
+                    </svg>
+                </fast-button>
+                <p class="wrap-text">
+                    Should position Below and be Left Aligned with the target anchor
+                </p>
+            </fast-card>
+        </fast-popover>
+
+        <fast-button
+            id="target-bottom-right-aligned"
+            style="margin: 200px 50px 200px 300px;"
+            onclick="(e) => e.stopPropagation();document.body.querySelector('#myPopoverBottomRightAligned').visible = !(document.body.querySelector('#myPopoverBottomRightAligned').visible)"
             tabindex="0"
         >
             target
