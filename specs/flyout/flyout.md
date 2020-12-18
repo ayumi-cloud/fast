@@ -1,9 +1,9 @@
 # Popover (aka Flyout)
 ## Overview
-Popover is a focusable floating container that shows over a pages content and displays UI related to what the user is doing and is typically triggered by a clickable element. Similar to a Dialog, but with positioning controls, no overlay option, and no specific action is required, a Popover can be used to reveal a secondary control or show more detail about an item.
+Popover is a focusable floating container that shows over a page's content and displays UI related to what the user is doing and is typically triggered by a clickable element. Similar to a Dialog, but with positioning controls, no overlay option, and no specific action is required. A Popover can be used to reveal a secondary control or show more detail about an item.
 
 ### Background
-A Popover can be less intrusive to the user experience than a Dialog and should be used instead of a Dialog when information or input is needed to be displayed, but not in the center of the screen, such as in the case of collection of additional info before an action, displaying information that is only relevant some of the time, or just displaying more information.
+A Popover can be less intrusive to the user experience than a Dialog and should be used instead of a Dialog when information or input is needed to be displayed, but not in the center of the screen, such as in the case of the collection of additional info before an action, displaying information that is only relevant some of the time or for just displaying more information.
 
 ### Use Cases
 - As a popup showing additional info for an item on the page.
@@ -13,9 +13,9 @@ A Popover can be less intrusive to the user experience than a Dialog and should 
 ### Features
 **Placement Logic:** - This component will use *Anchored Region* to be positioned relative to the Popover anchor element. This way it can be dynamic and adapt to the available space.
 
-**Soft Dismiss (aka Light Dismiss):** - A way to quickly close the Popover by clicking outside it, or pressing the `esc` key. An event would be emitted anytime the Popover is dismissed. The Popover would always be soft-dismissable. Detecting the users next click of a different element can trigger this when clicking outside the Popover.
+**Soft Dismiss (aka Light Dismiss):** - A way to quickly close the Popover by clicking outside it, or pressing the `esc` key. An event would be emitted anytime the Popover is dismissed. The Popover would always be soft-dismissable. Detecting the user's next click of a different element can trigger this when clicking outside the Popover.
 
-**Focus Management:** - Should follow the same process for focus management as a Dialog primarily as the Popover's role will be dialog. This includes a trap focus method, which can be optional. For accessibility the focus should return to the target that triggers the popover after the popover is closed.
+**Focus Management:** - Should follow the same process for focus management as a Dialog primarily as the Popover's role will be dialog. This includes a trap focus method, which can be optional. For accessibility, the focus should return to the target that triggers the popover after the popover is closed.
 
 
 ### Prior Art/Examples
@@ -25,17 +25,17 @@ A Popover can be less intrusive to the user experience than a Dialog and should 
 
 ![Popover](./images/salesforce-popover.png)
 ##### Popover from Evergreen
-- triggered by a button
+- Triggered by a button
 - https://evergreen.segment.com/components/popover/
 
 ![Popover](./images/evergreen-popover.png)
 
 ##### Microsoft Windows Developer Flyout, Text Only
-*Note:* the button is not part of the Popover, but shown for context as an anchor element.
+*Note:* The button is not part of the Popover, but shown for context as an anchor element.
 ![Text Only](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/images/flyout-wrapping-text.png)
 
 ##### Microsoft Windows Developer Flyout, Actionable
-*Note:* the button is not part of the Popover, but shown for context as an anchor element.
+*Note:* The button is not part of the Popover, but shown for context as an anchor element.
 ![Actionable More Info](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/images/flyout-example2.png)
 
 #### Inline Dialog from ATLAssian
