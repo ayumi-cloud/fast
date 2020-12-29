@@ -14,12 +14,12 @@ jobs:
           
           node_version: [10,12,14]
           
-          architecture: x64
+          architecture: [x64]
           # an extra windows -x86 run time
           include: 
              - os: windows-2016
-             node-version: '10'
-             architecture: x86
+               node-version: '10'
+               architecture: x86
     name: Node ${{matrix.node-version}} - ${{matrix.architecture}}  on ${{matrix.os}}
     steps:
     - uses: actions/checkout@v2
